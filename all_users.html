@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy — Admin{% endblock %}
+{% block content %}
+<section class="card"><div class="section-head"><div><span class="eyebrow">ADMIN</span><h1>All users</h1></div><span class="badge">{{ rows|length }} users</span></div>
+{% if rows %}<div class="table-wrap"><table><thead><tr><th>User</th><th>Profile</th><th>Original plan</th><th>Updated plan</th><th>Action</th></tr></thead><tbody>
+{% for row in rows %}<tr><td><strong>{{ row.user.username }}</strong><br><small>{{ row.user.user_id }}</small></td><td>{{ row.user.age }} yrs<br>{{ row.user.weight }} kg<br>{{ row.user.goal }} / {{ row.user.intensity }}</td><td><pre class="smallplan">{{ row.plan.original_plan if row.plan else '—' }}</pre></td><td><pre class="smallplan">{{ row.plan.updated_plan if row.plan and row.plan.updated_plan else '—' }}</pre></td><td><form method="post" action="/admin/users/{{ row.user.user_id }}/delete" onsubmit="return confirm('Delete this user and their plans?')"><button class="danger" type="submit">Delete</button></form></td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>No users yet.</p>{% endif %}</section>
+{% endblock %}

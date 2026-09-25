@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy — Your plan{% endblock %}
+{% block content %}
+<section class="card profile">
+  <div><span class="eyebrow">YOUR PROFILE</span><h1>{{ user.username }}</h1></div>
+  <div class="facts"><span><b>ID</b>{{ user.user_id }}</span><span><b>Age</b>{{ user.age }}</span><span><b>Weight</b>{{ user.weight }} kg</span><span><b>Goal</b>{{ user.goal }}</span><span><b>Intensity</b>{{ user.intensity }}</span></div>
+</section>
+{% if updated %}<div class="success">Your plan was updated from your feedback.</div>{% endif %}
+<section class="card"><div class="section-head"><h2>7-Day Workout Plan</h2><span class="badge">AI generated</span></div><pre class="plan">{{ workout_plan }}</pre></section>
+<section class="card"><div class="section-head"><h2>Nutrition & Recovery</h2></div><p class="tip">{{ nutrition_tip }}</p></section>
+<section class="card">
+  <h2>Refine your plan</h2><p>Tell FitBuddy what you want changed, for example: “more cardio”, “two rest days”, or “less leg volume”.</p>
+  <form method="post" action="/submit-feedback" class="form"><input type="hidden" name="user_id" value="{{ user.user_id }}"><textarea name="feedback" required maxlength="2000" rows="5" placeholder="What should change?"></textarea><button type="submit">Update Plan</button></form>
+</section>
+<a href="/" class="secondary">Create another plan</a>
+{% endblock %}

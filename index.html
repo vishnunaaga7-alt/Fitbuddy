@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy — Create your plan{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">PERSONALIZED • 7 DAYS • AI-POWERED</p>
+    <h1>Your workout plan, built around you.</h1>
+    <p>Enter a few details and FitBuddy will create a structured seven-day routine plus a practical nutrition/recovery tip.</p>
+  </div>
+  <form class="card form" method="post" action="/generate-workout">
+    <label>Name<input name="username" required maxlength="80" placeholder="Alex"></label>
+    <label>User ID<input name="user_id" required pattern="[A-Za-z0-9_-]+" placeholder="alex01"></label>
+    <div class="grid2"><label>Age<input name="age" type="number" min="13" max="100" required></label><label>Weight (kg)<input name="weight" type="number" min="20" max="500" step="0.1" required></label></div>
+    <label>Fitness goal<select name="goal"><option>weight loss</option><option>muscle gain</option><option>general wellness</option><option>flexibility</option></select></label>
+    <label>Workout intensity<select name="intensity"><option>low</option><option selected>medium</option><option>high</option></select></label>
+    <button type="submit">Generate 7-Day Plan</button>
+  </form>
+</section>
+<div class="notice">For safety, the AI avoids diagnosis and treatment advice. If you have an injury, medical condition, or are unsure whether exercise is appropriate, consult a qualified professional.</div>
+{% endblock %}

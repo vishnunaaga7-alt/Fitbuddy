@@ -1,0 +1,5 @@
+[
+  "tests/test_app.py::test_admin_requires_auth",
+  "tests/test_app.py::test_health",
+  "tests/test_app.py::test_home"
+]
